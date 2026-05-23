@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 — My Blog</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #fff; --text: #333; --text-light: #666; --accent: #0066cc;
+            --border: #e5e5e5; --code-bg: #f6f8fa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a2e; --text: #e0e0e0; --text-light: #999; --accent: #66b3ff;
+                --border: #333; --code-bg: #2a2a3e;
+            }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 17px; line-height: 1.7; color: var(--text); background: var(--bg); }
+        .wrapper { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 30px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .site-logo { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+        .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { font-size: 0.95rem; color: var(--text-light); }
+        .nav-links a:hover { color: var(--accent); }
+        .search-container { max-width: 600px; margin: 0 auto; }
+        .search-container h1 { margin-bottom: 24px; }
+        .search-input { width: 100%; padding: 14px 18px; font-size: 1.05rem; border: 2px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); outline: none; transition: border-color 0.15s; }
+        .search-input:focus { border-color: var(--accent); }
+        .search-results { margin-top: 30px; }
+        .search-placeholder { text-align: center; color: var(--text-light); padding: 40px 0; font-size: 1.1rem; }
+        .search-result { padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .search-result h3 { margin-bottom: 4px; }
+        .search-result .meta { font-size: 0.85rem; color: var(--text-light); }
+        .site-footer { margin-top: 60px; padding: 24px 0; text-align: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+        @media (max-width: 600px) {
+            .site-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <header class="site-header">
+        <a href="index.html" class="site-logo">My Blog</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="post.html">文章</a></li>
+                <li><a href="tags.html">标签</a></li>
+                <li><a href="search.html" style="color:var(--accent);border-bottom:2px solid var(--accent);">搜索</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li>
+                    <a href="https://github.com/your-username" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <h1>搜索</h1>
+            <input type="text" id="search-input" class="search-input" placeholder="输入关键词搜索文章..." autofocus
+                oninput="handleSearch(this.value)" />
+            <div id="search-results" class="search-results">
+                <p class="search-placeholder">输入关键词开始搜索...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 My Blog. Powered by Hugo.</p>
+    </footer>
+
+</div>
+
+<script>
+// 模拟搜索（实际部署后由 Fuse.js 驱动）
+const posts = [
+    { title: "Hello, World! 博客开张", permalink: "post.html", date: "2026-05-21", content: "博客正式上线！经过一番折腾，这个博客终于搭建好了。第一篇 Markdown 文章，聊聊建站这件事。技术选型：选择 Hugo 的理由很简单——快、简单、Markdown。评论用了 Giscus，基于 GitHub Discussions。搜索用的是 Fuse.js。" },
+];
+function handleSearch(q) {
+    const results = document.getElementById("search-results");
+    q = q.trim().toLowerCase();
+    if (!q) {
+        results.innerHTML = '<p class="search-placeholder">输入关键词开始搜索...</p>';
+        return;
+    }
+    const filtered = posts.filter(p =>
+        p.title.toLowerCase().includes(q) || p.content.toLowerCase().includes(q)
+    );
+    if (filtered.length === 0) {
+        results.innerHTML = '<p class="search-placeholder">没有找到相关文章。</p>';
+        return;
+    }
+    results.innerHTML = filtered.map(p =>
+        '<div class="search-result">' +
+        '<h3><a href="' + p.permalink + '">' + p.title + '</a></h3>' +
+        '<p class="meta">' + p.date + '</p>' +
+        '<p>' + p.content.slice(0, 120) + '...</p>' +
+        '</div>'
+    ).join("");
+}
+</script>
+</body>
+</html>

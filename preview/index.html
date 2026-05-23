@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #fff; --text: #333; --text-light: #666; --accent: #0066cc;
+            --border: #e5e5e5; --code-bg: #f6f8fa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a2e; --text: #e0e0e0; --text-light: #999; --accent: #66b3ff;
+                --border: #333; --code-bg: #2a2a3e;
+            }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 17px; line-height: 1.7; color: var(--text); background: var(--bg); }
+        .wrapper { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 30px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .site-logo { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+        .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { font-size: 0.95rem; color: var(--text-light); }
+        .nav-links a:hover { color: var(--accent); }
+        .home-intro { text-align: center; padding: 40px 0 20px; }
+        .home-intro h1 { font-size: 2.4rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .home-intro p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 20px; }
+        .home-links { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; }
+        .home-links a { padding: 8px 24px; border: 1px solid var(--accent); border-radius: 6px; font-size: 0.95rem; transition: background 0.15s, color 0.15s; }
+        .home-links a:hover { background: var(--accent); color: #fff; text-decoration: none; }
+        .recent-posts h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 16px; }
+        .post-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+        .post-item h3 { margin-bottom: 6px; font-size: 1.25rem; }
+        .post-item h3 a { color: var(--text); }
+        .post-item h3 a:hover { color: var(--accent); text-decoration: none; }
+        .post-meta { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--text-light); }
+        .tag { color: var(--accent); font-size: 0.8rem; margin-left: 6px; }
+        .site-footer { margin-top: 60px; padding: 24px 0; text-align: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+        .github-link svg { vertical-align: -4px; }
+        .post-single h1 { font-size: 2rem; margin-bottom: 10px; }
+        .post-content { font-size: 1.05rem; line-height: 1.85; margin-top: 24px; }
+        .post-content h2 { font-size: 1.4rem; margin: 36px 0 14px; }
+        .post-content p { margin-bottom: 18px; }
+        .post-content ul, .post-content ol { margin: 0 0 18px 24px; }
+        .post-content li { margin-bottom: 6px; }
+        .post-content pre { background: var(--code-bg); border-radius: 8px; padding: 16px; overflow-x: auto; margin-bottom: 18px; font-size: 0.88rem; }
+        .post-content code { font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace; font-size: 0.88em; }
+        .post-content :not(pre) > code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+        .comments-section { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border); }
+        .comments-section h2 { font-size: 1.1rem; margin-bottom: 16px; color: var(--text-light); }
+        .page-single h1 { margin-bottom: 24px; }
+        .search-input { width: 100%; padding: 14px 18px; font-size: 1.05rem; border: 2px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); outline: none; }
+        .search-input:focus { border-color: var(--accent); }
+        .search-container { max-width: 600px; margin: 0 auto; }
+        .search-results { margin-top: 30px; }
+        .search-placeholder { text-align: center; color: var(--text-light); padding: 40px 0; }
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .tag-cloud a { padding: 4px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.9rem; }
+        .tag-cloud a:hover { background: var(--accent); color: #fff; border-color: var(--accent); text-decoration: none; }
+        @media (max-width: 600px) {
+            .site-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .nav-links { gap: 14px; }
+            .home-intro h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+        <a href="index.html" class="site-logo">My Blog</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" style="color:var(--accent);border-bottom:2px solid var(--accent);">首页</a></li>
+                <li><a href="post.html">文章</a></li>
+                <li><a href="tags.html">标签</a></li>
+                <li><a href="search.html">搜索</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li>
+                    <a href="https://github.com/your-username" target="_blank" class="github-link" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== Main Content ===== -->
+    <main>
+
+        <!-- ===== HOMEPAGE ===== -->
+        <section class="home-intro">
+            <h1>My Blog</h1>
+            <p>我的个人博客</p>
+            <div class="home-links">
+                <a href="post.html">浏览文章</a>
+                <a href="about.html">关于我</a>
+            </div>
+        </section>
+
+        <section class="recent-posts">
+            <h2>最新文章</h2>
+            <article class="post-item">
+                <h3><a href="post.html">Hello, World! 博客开张</a></h3>
+                <div class="post-meta">
+                    <time datetime="2026-05-21">2026年05月21日</time>
+                    <a href="tags.html" class="tag">#博客</a>
+                    <a href="tags.html" class="tag">#Hugo</a>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+        <p>&copy; 2026 My Blog. Powered by Hugo.</p>
+    </footer>
+
+</div><!-- /wrapper -->
+</body>
+</html>

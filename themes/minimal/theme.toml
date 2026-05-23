@@ -1,0 +1,5 @@
+[theme]
+  name = "minimal"
+  description = "A clean, minimal blog theme"
+  license = "MIT"
+  min_version = "0.100.0"

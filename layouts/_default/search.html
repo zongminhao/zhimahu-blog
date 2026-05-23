@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="search-container">
+    <h1>搜索</h1>
+    <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="输入关键词搜索文章..."
+        autofocus
+    />
+    <div id="search-results" class="search-results">
+        <p class="search-placeholder">输入关键词开始搜索...</p>
+    </div>
+</div>
+
+{{ $searchJS := resources.Get "search.js" | minify | fingerprint }}
+<script src="{{ $searchJS.RelPermalink }}" defer></script>
+{{ end }}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, World! 博客开张 — My Blog</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #fff; --text: #333; --text-light: #666; --accent: #0066cc;
+            --border: #e5e5e5; --code-bg: #f6f8fa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a2e; --text: #e0e0e0; --text-light: #999; --accent: #66b3ff;
+                --border: #333; --code-bg: #2a2a3e;
+            }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 17px; line-height: 1.7; color: var(--text); background: var(--bg); }
+        .wrapper { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 30px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .site-logo { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+        .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { font-size: 0.95rem; color: var(--text-light); }
+        .nav-links a:hover { color: var(--accent); }
+        .post-single h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.3; }
+        .post-meta { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--text-light); margin-bottom: 24px; }
+        .tag { color: var(--accent); font-size: 0.8rem; }
+        .post-content { font-size: 1.05rem; line-height: 1.85; }
+        .post-content h2 { font-size: 1.4rem; margin: 36px 0 14px; }
+        .post-content p { margin-bottom: 18px; }
+        .post-content ul, .post-content ol { margin: 0 0 18px 24px; }
+        .post-content li { margin-bottom: 6px; }
+        .post-content pre { background: var(--code-bg); border-radius: 8px; padding: 16px; overflow-x: auto; margin-bottom: 18px; font-size: 0.88rem; }
+        .post-content code { font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace; font-size: 0.88em; }
+        .post-content :not(pre) > code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+        .comments-section { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border); }
+        .comments-section h2 { font-size: 1.1rem; margin-bottom: 16px; color: var(--text-light); }
+        .site-footer { margin-top: 60px; padding: 24px 0; text-align: center; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-light); }
+        @media (max-width: 600px) {
+            .site-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .post-single h1 { font-size: 1.6rem; }
+            .post-content { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <header class="site-header">
+        <a href="index.html" class="site-logo">My Blog</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="post.html" style="color:var(--accent);border-bottom:2px solid var(--accent);">文章</a></li>
+                <li><a href="tags.html">标签</a></li>
+                <li><a href="search.html">搜索</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li>
+                    <a href="https://github.com/your-username" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-single">
+            <h1>Hello, World! 博客开张</h1>
+            <div class="post-meta">
+                <time datetime="2026-05-21">2026年05月21日</time>
+                <a href="tags.html" class="tag">#博客</a>
+                <a href="tags.html" class="tag">#Hugo</a>
+            </div>
+
+            <div class="post-content">
+                <h2>博客正式上线！</h2>
+                <p>经过一番折腾，这个博客终于搭建好了。第一篇 Markdown 文章，聊聊建站这件事。</p>
+
+                <h2>技术选型</h2>
+                <p>选择 <strong>Hugo</strong> 的理由很简单：</p>
+                <ul>
+                    <li><strong>快</strong> —— 构建速度毫秒级，几百篇文章也是秒出</li>
+                    <li><strong>简单</strong> —— 单个二进制文件，不用装一堆依赖</li>
+                    <li><strong>Markdown</strong> —— 写作体验纯粹，专注内容本身</li>
+                </ul>
+                <p>评论用了 <strong>Giscus</strong>，基于 GitHub Discussions，不用担心数据归属和隐私问题。搜索用的是 <strong>Fuse.js</strong>，前端模糊搜索，对于个人博客的规模足够了。</p>
+
+                <h2>计划写些什么</h2>
+                <ul>
+                    <li>技术踩坑记录</li>
+                    <li>工具和效率分享</li>
+                    <li>偶尔的随笔和读书笔记</li>
+                </ul>
+
+                <h2>代码块测试</h2>
+<pre><code><span style="color:#d73a49">def</span> <span style="color:#6f42c1">hello</span>():
+    <span style="color:#032f62">print</span>(<span style="color:#032f62">"Hello, World!"</span>)</code></pre>
+
+<pre><code><span style="color:#d73a49">package</span> main
+
+<span style="color:#d73a49">import</span> <span style="color:#032f62">"fmt"</span>
+
+<span style="color:#d73a49">func</span> <span style="color:#6f42c1">main</span>() {
+    fmt.<span style="color:#6f42c1">Println</span>(<span style="color:#032f62">"Hello from Go!"</span>)
+}</code></pre>
+
+                <p>感谢你看到这里，下一篇见。</p>
+            </div>
+
+            <!-- Giscus 评论 -->
+            <div class="comments-section">
+                <h2>评论</h2>
+                <p style="color:var(--text-light);font-size:0.9rem;">
+                    评论由 Giscus 驱动。部署后需要在 GitHub 仓库开启 Discussions 功能。
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 My Blog. Powered by Hugo.</p>
+    </footer>
+
+</div>
+</body>
+</html>

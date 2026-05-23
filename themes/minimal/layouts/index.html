@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="home-intro">
+    <h1>{{ .Site.Title }}</h1>
+    <p>{{ .Site.Params.description }}</p>
+    <div class="home-links">
+        <a href="/posts/">浏览文章</a>
+        <a href="/about/">关于我</a>
+    </div>
+</section>
+
+<section class="recent-posts">
+    <h2>最新文章</h2>
+    {{ $posts := where .Site.RegularPages "Type" "posts" }}
+    {{ range first 5 $posts }}
+    <article class="post-item">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年01月02日" }}</time>
+        </div>
+    </article>
+    {{ end }}
+</section>
+{{ end }}

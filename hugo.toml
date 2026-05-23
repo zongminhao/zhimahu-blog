@@ -1,0 +1,54 @@
+baseURL = "http://39.97.232.114"
+languageCode = "zh-CN"
+title = "芝麻糊的博客"
+theme = "minimal"
+enableGitInfo = false
+
+# 文章路径格式
+[permalinks]
+  posts = "/posts/:slug/"
+
+# 标签和分类
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# 输出格式 (HTML + JSON 用于搜索)
+[outputs]
+  home = ["HTML", "JSON"]
+
+# Markdown 配置
+[markup]
+  [markup.highlight]
+    style = "github-dark"
+    noClasses = false
+
+# 菜单导航
+[menu]
+  [[menu.main]]
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "文章"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "标签"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    name = "搜索"
+    url = "/search/"
+    weight = 4
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 5
+
+[params]
+  description = "芝麻糊的博客"
+  author = "zongminhao"
+  github = "https://github.com/zongminhao"
+  # Giscus 配置（repoId 和 categoryId 需要在仓库创建后从 Giscus 获取）
+  giscus = { repo = "zongminhao/zhimahu-blog", repoId = "", category = "Announcements", categoryId = "" }

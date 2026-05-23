@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="taxonomy-cloud">
+    <h1>{{ .Title }}</h1>
+    <div class="tag-cloud">
+        {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}" class="tag" style="font-size: {{ add 0.8 (mul (math.Log (add .Count 1)) 0.5) }}rem">
+            #{{ .Page.Title }} ({{ .Count }})
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
